@@ -423,8 +423,8 @@ cellTypeAssignSCRNA <- function(cdseq_gep = NULL,
     }
     
     # grep cell id and gene names in seurat output
-    scRNAseq_cell_gene_name <- cdseq_synth_scRNA_seurat@assays$RNA@counts@Dimnames[[1]]
-    scRNAseq_cell_id_seurat <- cdseq_synth_scRNA_seurat@assays$RNA@counts@Dimnames[[2]]
+    scRNAseq_cell_gene_name <- cdseq_synth_scRNA_seurat[["RNA"]]$counts@Dimnames[[1]]
+    scRNAseq_cell_id_seurat <- cdseq_synth_scRNA_seurat[["RNA"]]$counts@Dimnames[[2]]
 
     # construct gold standard cluster label using sc_annotation
     scRNA_seurat_comm_cell <- intersection(list(scRNAseq_cell_id_seurat,sc_annotation$cell_id),order = 'stable')
@@ -625,8 +625,8 @@ cellTypeAssignSCRNA <- function(cdseq_gep = NULL,
       ##   CDSeq-estimated per-sample-cell-type-specific annotation   ##
       ##################################################################
       # grep single cell id in seurat output
-      scRNAseq_cell_gene_name <- cdseq_synth_scRNA_seurat_persample@assays$RNA@counts@Dimnames[[1]]
-      scRNAseq_cell_id_seurat <- cdseq_synth_scRNA_seurat_persample@assays$RNA@counts@Dimnames[[2]]
+      scRNAseq_cell_gene_name <- cdseq_synth_scRNA_seurat_persample[["RNA"]]$counts@Dimnames[[1]]
+      scRNAseq_cell_id_seurat <- cdseq_synth_scRNA_seurat_persample[["RNA"]]$counts@Dimnames[[2]]
       if(verbose){cat("length(scRNAseq_cell_id_seurat) = ", length(scRNAseq_cell_id_seurat),"\n" )}
       
       # construct gold standard cluster label using sc_annotation
